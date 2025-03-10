@@ -52,107 +52,110 @@ This project analyzes **BRC certification** for **the certification body Isoqar*
 
 ## 📌 3. Database Structure (SQL)
 
--- Companies table
-CREATE TABLE companies (
-    company_id SERIAL PRIMARY KEY,
-    company_name TEXT UNIQUE,
-    site_code TEXT,
-    address TEXT
-);
+-- Companies table  
+CREATE TABLE companies (  
+    company_id SERIAL PRIMARY KEY,  
+    company_name TEXT UNIQUE,  
+    site_code TEXT,  
+    address TEXT  
+);  
 
--- Contacts table
-CREATE TABLE contacts (
-    contact_id SERIAL PRIMARY KEY,
-    company_id INT REFERENCES companies(company_id),
-    contact_type TEXT, -- 'Technical' or 'Commercial'
-    contact_name TEXT,
-    email TEXT
-);
+-- Contacts table  
+CREATE TABLE contacts (  
+    contact_id SERIAL PRIMARY KEY,  
+    company_id INT REFERENCES companies(company_id),  
+    contact_type TEXT, -- 'Technical' or 'Commercial'  
+    contact_name TEXT,  
+    email TEXT  
+);  
 
 -- Certifications table
-CREATE TABLE certifications (
-    cert_id SERIAL PRIMARY KEY,
-    company_id INT REFERENCES companies(company_id),
-    certification_body TEXT,
-    issue_date DATE,
-    expiry_date DATE,
-    certification_grade TEXT
-);
+CREATE TABLE certifications (  
+    cert_id SERIAL PRIMARY KEY,  
+    company_id INT REFERENCES companies(company_id),  
+    certification_body TEXT,  
+    issue_date DATE,  
+    expiry_date DATE,  
+    certification_grade TEXT  
+);  
 
-##📌 4. Key SQL Queries
-📊 1. What is Isoqar's market share?
+---
 
-SELECT 
-    "Certification Body",
-    COUNT(*) AS "Total Certifications",
-    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS "Market Share (%)"
-FROM certifications
-GROUP BY "Certification Body"
-ORDER BY "Total Certifications" DESC;
-📌 Insight: How dominant Isoqar is in the certification market compared to competitors.
+## 📌 4. Key SQL Queries  
 
-📊 2. Potential clients for Isoqar
+📊 1. What is Isoqar's market share?  
 
-SELECT 
-    "Company Name",
-    "Certification Body"
-FROM certifications
-WHERE "Company Name" NOT IN (
-    SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
-);
-📌 Insight: Companies that have not yet certified with Isoqar but could do so.
+SELECT   
+    "Certification Body",  
+    COUNT(*) AS "Total Certifications",  
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS "Market Share (%)"  
+FROM certifications  
+GROUP BY "Certification Body"  
+ORDER BY "Total Certifications" DESC;  
+📌 Insight: How dominant Isoqar is in the certification market compared to competitors.  
 
-📊 3. RFM Analysis for Potential Clients
+📊 2. Potential clients for Isoqar  
 
-WITH Potential_Clients AS (
-    SELECT 
-        "Company Name",
-        MAX("Expiry Date") AS last_certification,
-        COUNT(*) AS certification_count,
-        AVG(
-            CASE 
-                WHEN "Certification Grade" = 'AA' THEN 5
-                WHEN "Certification Grade" = 'A' THEN 4
-                WHEN "Certification Grade" = 'B' THEN 3
-                WHEN "Certification Grade" = 'C' THEN 2
-                ELSE 1
-            END
-        ) AS avg_certification_quality
-    FROM certifications
-    WHERE "Company Name" NOT IN (
-        SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
-    ) 
-    GROUP BY "Company Name"
-)
-SELECT 
-    "Company Name",
-    last_certification,
-    certification_count,
-    avg_certification_quality,
-    CASE 
-        WHEN last_certification > CURRENT_DATE - INTERVAL '1 year' AND avg_certification_quality >= 4 THEN 'High Probability'
-        WHEN last_certification BETWEEN CURRENT_DATE - INTERVAL '3 years' AND CURRENT_DATE - INTERVAL '1 year' THEN 'Medium Probability'
-        ELSE 'Low Probability'
-    END AS "Likelihood to Certify with Isoqar"
-FROM Potential_Clients;
-📌 Insight:
-✅ High Probability – Companies most likely to certify with Isoqar.
-✅ Medium Probability – Companies that were certified but lost certification.
-✅ Low Probability – Companies with minimal certification history.
+SELECT   
+    "Company Name",  
+    "Certification Body"  
+FROM certifications  
+WHERE "Company Name" NOT IN (  
+    SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'  
+);  
+📌 Insight: Companies that have not yet certified with Isoqar but could do so.  
 
-##📌 5. Automation (Future Feature)
-📌 What is planned?
-✅ Automated scraping of certification data from the BRC website.
-✅ Automated loading into SQL.
-✅ Auto-refreshing dashboards in Tableau / Power BI.
+📊 3. RFM Analysis for Potential Clients  
 
-# BRC Certification Scraper (Future Implementation)
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+WITH Potential_Clients AS (  
+    SELECT   
+        "Company Name",  
+        MAX("Expiry Date") AS last_certification,  
+        COUNT(*) AS certification_count,  
+        AVG(  
+            CASE   
+                WHEN "Certification Grade" = 'AA' THEN 5  
+                WHEN "Certification Grade" = 'A' THEN 4  
+                WHEN "Certification Grade" = 'B' THEN 3  
+                WHEN "Certification Grade" = 'C' THEN 2  
+                ELSE 1  
+            END  
+        ) AS avg_certification_quality  
+    FROM certifications  
+    WHERE "Company Name" NOT IN (  
+        SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'  
+    )   
+    GROUP BY "Company Name"  
+)  
+SELECT   
+    "Company Name",  
+    last_certification,  
+    certification_count,  
+    avg_certification_quality,  
+    CASE   
+        WHEN last_certification > CURRENT_DATE - INTERVAL '1 year' AND avg_certification_quality >= 4 THEN 'High Probability'  
+        WHEN last_certification BETWEEN CURRENT_DATE - INTERVAL '3 years' AND CURRENT_DATE - INTERVAL '1 year' THEN 'Medium Probability'  
+        ELSE 'Low Probability'  
+    END AS "Likelihood to Certify with Isoqar"  
+FROM Potential_Clients;  
+📌 Insight:  
+✅ High Probability – Companies most likely to certify with Isoqar.  
+✅ Medium Probability – Companies that were certified but lost certification.  
+✅ Low Probability – Companies with minimal certification history.  
 
-BRC_URL = "https://directory.brcgs.com/certified-companies"
-response = requests.get(BRC_URL, headers={"User-Agent": "Mozilla/5.0"})
-soup = BeautifulSoup(response.text, "html.parser")
+## 📌 5. Automation (Future Feature)  
+📌 What is planned?  
+✅ Automated scraping of certification data from the BRC website.  
+✅ Automated loading into SQL.  
+✅ Auto-refreshing dashboards in Tableau / Power BI.  
+
+📊 BRC Certification Scraper (Future Implementation)  
+import requests  
+from bs4 import BeautifulSoup  
+import pandas as pd  
+
+BRC_URL = "https://directory.brcgs.com/certified-companies"  
+response = requests.get(BRC_URL, headers={"User-Agent": "Mozilla/5.0"})  
+soup = BeautifulSoup(response.text, "html.parser")  
 
 
