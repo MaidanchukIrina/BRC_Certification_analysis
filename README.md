@@ -2,22 +2,48 @@
 Research of the market potential of BRC certification 
 🚀 Project description
 This project analyzes the certification of companies according to the BRC standard for the certification body Isoqar.
-Objectives:
-✅ Increase Isoqar's market share in certification.
-Estimate the potential revenue from attracting new customers (Revenue Opportunity).
-✅ Identify companies that will soon lose their certification and may switch to Isoqar.
-Analyze the compliance of certifications with ISO 27001 (information security) standards.
-Automate data updates in SQL and dashboards (future feature).
+Objectives:  
+✅ Increase Isoqar's market share in certification.  
+Estimate the potential revenue from attracting new customers (Revenue Opportunity).  
+✅ Identify companies that will soon lose their certification and may switch to Isoqar.  
+Analyze the compliance of certifications with ISO 27001 (information security) standards.  
+Automate data updates in SQL and dashboards (future feature).  
 
-📌 1. Business questions.
-🔹 What market share does Isoqar have compared to its competitors?
-🔹 Which companies have not yet been certified by Isoqar but can do so?
-🔹 What is Isoqar's potential revenue if it attracts more customers?
-🔹 Which companies may lose certification in the near future?
-🔹 How does the certification Grade affect the likelihood of recertification?
-🔹 Which companies are at high risk due to certification issues (ISO 27001 Risk Management)?
-🔹 How to automate the process of updating data for more accurate analysis?
+📌 1. Business questions.  
+🔹 What market share does Isoqar have compared to its competitors?  
+🔹 Which companies have not yet been certified by Isoqar but can do so?  
+🔹 What is Isoqar's potential revenue if it attracts more customers?  
+🔹 Which companies may lose certification in the near future?  
+🔹 How does the certification Grade affect the likelihood of recertification?  
+🔹 Which companies are at high risk due to certification issues (ISO 27001 Risk Management)?  
+🔹 How to automate the process of updating data for more accurate analysis?  
 
+## 📌 2. План виконання проєкту
+
+### ✅ Етап 1: Завантаження даних  
+- [x] Завантаження Excel-файлів (`Food` + `Packaging`)  
+- [x] Очищення дублікатів, пропущених значень, форматування дат  
+- [x] Розподіл на таблиці `companies`, `contacts`, `certifications`  
+
+### ✅ Етап 2: Завантаження даних у SQL  
+- [ ] Створення реляційної бази PostgreSQL  
+- [ ] Завантаження очищених даних у SQL  
+
+### ✅ Етап 3: Аналітика (SQL-запити)  
+- [ ] Аналіз ринку сертифікацій (частка Isoqar)  
+- [ ] Виявлення компаній, які не сертифікувалися в Isoqar  
+- [ ] Розрахунок Revenue Opportunity  
+- [ ] Оцінка ризиків відповідно до ISO 27001  
+
+### ✅ Етап 4: Візуалізація в Tableau / Power BI  
+- [ ] Дашборд "Revenue Opportunity"  
+- [ ] Дашборд "Конкурентний аналіз сертифікацій"  
+- [ ] Дашборд "RFM-аналітика потенційних клієнтів"  
+
+### ✅ Етап 5: Автоматизація (майбутня фіча)  
+- [ ] Автоматичний парсинг сертифікацій BRC  
+- [ ] Завантаження оновлених даних у SQL  
+- [ ] Автооновлення аналітики в Tableau / Power BI  
 
 📌 2. Project implementation plan
 ✅ Task completed Comment
