@@ -1,0 +1,30 @@
+# 📌 Data Processing Documentation
+
+## **1. Data Sources**
+- **Raw files** (stored in `data/raw/`):
+  - `raw_food.xlsx` – BRC-certified food companies.
+  - `raw_packaging.xlsx` – BRC-certified packaging companies.
+
+- **Processed structured files** (stored in `data/processed/`):
+  - `BRC_food.csv`
+  - `BRC_packaging.csv`
+
+## **2. Data Transformation Steps**
+### ✅ **Step 1: Data Cleaning**
+- **Removed extra metadata rows** from Excel.
+- **Transposed the structure** so company names are rows, categories are columns.
+- **Fixed missing values** in key fields (`Email`, `Certification Body`).
+
+### ✅ **Step 2: Encoding Fixes**
+- `BRC_food.csv` had an **encoding issue** → converted from `ISO-8859-1`.
+- **Special characters corrected** (`T?V` → `TÜV`).
+
+### ✅ **Step 3: Standardizing Column Names**
+- `Standart` → `Standard`
+- `Certification Exclusion` → `Exclusion`
+- `Commecial contact email` → `Commercial contact email`
+
+## **3. Next Steps**
+- Load `data/processed/*.csv` into **PostgreSQL** for analysis.
+- Ensure **no duplicate records** exist in SQL.
+- Use **SQL queries for data validation**.
