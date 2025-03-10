@@ -1,77 +1,59 @@
 # BRC_Certification_analysis
-Research of the market potential of BRC certification 
-🚀 Project description
-This project analyzes the certification of companies according to the BRC standard for the certification body Isoqar.
-Objectives:  
-✅ Increase Isoqar's market share in certification.  
-Estimate the potential revenue from attracting new customers (Revenue Opportunity).  
-✅ Identify companies that will soon lose their certification and may switch to Isoqar.  
-Analyze the compliance of certifications with ISO 27001 (information security) standards.  
-Automate data updates in SQL and dashboards (future feature).  
+Research of the market potential of BRC certification   
 
-📌 1. Business questions.  
-🔹 What market share does Isoqar have compared to its competitors?  
-🔹 Which companies have not yet been certified by Isoqar but can do so?  
-🔹 What is Isoqar's potential revenue if it attracts more customers?  
-🔹 Which companies may lose certification in the near future?  
-🔹 How does the certification Grade affect the likelihood of recertification?  
-🔹 Which companies are at high risk due to certification issues (ISO 27001 Risk Management)?  
-🔹 How to automate the process of updating data for more accurate analysis?  
+## 🚀 Project Overview
+This project analyzes **BRC certification** for **the certification body Isoqar**.  
+**Objectives:**  
+✅ **Increase Isoqar's market share in BRC certification.**  
+✅ **Assess potential revenue from acquiring new clients (Revenue Opportunity).**  
+✅ **Identify companies that will soon lose certification and could transition to Isoqar.**  
+✅ **Analyze compliance of certifications with ISO 27001 (information security).**  
+✅ **Automate data updates in SQL and dashboards (future feature).**  
 
-## 📌 2. План виконання проєкту
+---
 
-### ✅ Етап 1: Завантаження даних  
-- [x] Завантаження Excel-файлів (`Food` + `Packaging`)  
-- [x] Очищення дублікатів, пропущених значень, форматування дат  
-- [x] Розподіл на таблиці `companies`, `contacts`, `certifications`  
+## 📌 1. Business Questions
+🔹 **What is Isoqar's market share compared to competitors?**  
+🔹 **Which companies have not yet certified with Isoqar but could do so?**  
+🔹 **What is the potential revenue if Isoqar attracts more clients?**  
+🔹 **Which companies are at risk of losing certification soon?**  
+🔹 **How does the certification Grade impact the likelihood of recertification?**  
+🔹 **Which companies have high-risk levels due to certification issues (ISO 27001 Risk Management)?**  
+🔹 **How can we automate the data update process for more accurate analysis?**  
 
-### ✅ Етап 2: Завантаження даних у SQL  
-- [ ] Створення реляційної бази PostgreSQL  
-- [ ] Завантаження очищених даних у SQL  
+---
 
-### ✅ Етап 3: Аналітика (SQL-запити)  
-- [ ] Аналіз ринку сертифікацій (частка Isoqar)  
-- [ ] Виявлення компаній, які не сертифікувалися в Isoqar  
-- [ ] Розрахунок Revenue Opportunity  
-- [ ] Оцінка ризиків відповідно до ISO 27001  
+## 📌 2. Project Execution Plan
 
-### ✅ Етап 4: Візуалізація в Tableau / Power BI  
-- [ ] Дашборд "Revenue Opportunity"  
-- [ ] Дашборд "Конкурентний аналіз сертифікацій"  
-- [ ] Дашборд "RFM-аналітика потенційних клієнтів"  
+| ✅ Completed | Task | Notes |
+|------------|----------------------|---------------------|
+| ⬜ | **Stage 1: Data Extraction & Preparation** | |
+| ✅ | Load Excel files (`Food` + `Packaging`) | |
+| ✅ | Clean duplicates, missing values, and format dates | |
+| ✅ | Split into `companies`, `contacts`, `certifications` tables | |
+| ⬜ | **Stage 2: Load Data into SQL** | |
+| ⬜ | Create a relational PostgreSQL database | |
+| ⬜ | Load cleaned data into SQL | |
+| ⬜ | **Stage 3: Analytics (SQL Queries)** | |
+| ⬜ | Analyze the certification market (Isoqar's market share) | |
+| ⬜ | Identify companies not certified by Isoqar | |
+| ⬜ | Calculate Revenue Opportunity | |
+| ⬜ | Assess risks according to ISO 27001 | |
+| ⬜ | **Stage 4: Visualization in Tableau / Power BI** | |
+| ⬜ | "Revenue Opportunity" Dashboard | |
+| ⬜ | "Competitive Analysis of Certifications" Dashboard | |
+| ⬜ | "RFM Analysis of Potential Clients" Dashboard | |
+| ⬜ | **Stage 5: Automation (Future Feature)** | |
+| ⬜ | Automated scraping of BRC certifications | |
+| ⬜ | Load updated data into SQL | |
+| ⬜ | Auto-refresh analytics in Tableau / Power BI | |
 
-### ✅ Етап 5: Автоматизація (майбутня фіча)  
-- [ ] Автоматичний парсинг сертифікацій BRC  
-- [ ] Завантаження оновлених даних у SQL  
-- [ ] Автооновлення аналітики в Tableau / Power BI  
+---
 
-📌 2. Project implementation plan
-✅ Task completed Comment
-⬜ Stage 1: Uploading data	
-✅ Uploading Excel files (Food + Packaging)	
-✅ Cleaning duplicates, missing values, formatting dates	
-✅ Separation into tables for companies, contacts, certifications	
-Stage 2: Loading data into SQL	
-⬜ Creating a PostgreSQL relational database	
-⬜ Loading the cleansed data into SQL	
-⬜ Stage 3: Analytics (SQL queries)	
-⬜ Analysis of the certification market (Isoqar's share)	
-Identification of companies that have not been certified by Isoqar	
-⬜ Calculation of Revenue Opportunity	
-Risk assessment according to ISO 27001	
-Stage 4: Visualization in Tableau / Power BI	
-⬜ “Revenue Opportunity” dashboard	
-⬜ Dashboard “Competitive analysis of certifications”	
-Dashboard “RFM analytics of potential customers”	
-⬜ Stage 5: Automation (future feature)	
-⬜ Automatic parsing of BRC certifications	
-⬜ Uploading updated data to SQL	
-⬜ Auto-update analytics in Tableau / Power BI	
-📌 3. Database structure (SQL)
-sql
-Copy
-Edit.
--- Table of companies
+## 📌 3. Database Structure (SQL)
+
+```sql
+-- Companies table
 CREATE TABLE companies (
     company_id SERIAL PRIMARY KEY,
     company_name TEXT UNIQUE,
@@ -79,7 +61,7 @@ CREATE TABLE companies (
     address TEXT
 );
 
--- Table of contacts
+-- Contacts table
 CREATE TABLE contacts (
     contact_id SERIAL PRIMARY KEY,
     company_id INT REFERENCES companies(company_id),
@@ -88,11 +70,7 @@ CREATE TABLE contacts (
     email TEXT
 );
 
-Translated with DeepL.com (free version)
-
-
-
--- Certification table
+-- Certifications table
 CREATE TABLE certifications (
     cert_id SERIAL PRIMARY KEY,
     company_id INT REFERENCES companies(company_id),
@@ -101,61 +79,59 @@ CREATE TABLE certifications (
     expiry_date DATE,
     certification_grade TEXT
 );
-📌 4. Basic SQL queries.
-📊 1. Isoqar market share
+📌 4. Key SQL Queries
+📊 1. What is Isoqar's market share?
 sql
-Copy
-Edit
+Копировать
+Редактировать
 SELECT 
-    “Certification Body”,
-    COUNT(*) AS “Total Certifications”,
-    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS “Market Share (%)”
+    "Certification Body",
+    COUNT(*) AS "Total Certifications",
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS "Market Share (%)"
 FROM certifications
-GROUP BY “Certification Body”
-ORDER BY “Total Certifications” DESC;
-📌 What will it show? How dominant Isoqar is in certifications compared to its competitors.
+GROUP BY "Certification Body"
+ORDER BY "Total Certifications" DESC;
+📌 Insight: How dominant Isoqar is in the certification market compared to competitors.
 
-📊 2. Potential customers for Isoqar
+📊 2. Potential clients for Isoqar
 sql
-Copy
-Edit
+Копировать
+Редактировать
 SELECT 
-    “Company Name”,
-    “Certification Body”
+    "Company Name",
+    "Certification Body"
 FROM certifications
-WHERE “Company Name” NOT IN (
-    SELECT “Company Name” FROM certifications WHERE “Certification Body” = 'Isoqar'
+WHERE "Company Name" NOT IN (
+    SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
 );
-📌 What will it show? Companies that have not yet been certified by Isoqar, but can do so.
+📌 Insight: Companies that have not yet certified with Isoqar but could do so.
 
-
-
-📊 3. RFM analysis of potential customers
+📊 3. RFM Analysis for Potential Clients
 sql
-Copy
-Edit
+Копировать
+Редактировать
 WITH Potential_Clients AS (
     SELECT 
-        “Company Name”,
-        MAX(“Expiry Date”) AS last_certification,
+        "Company Name",
+        MAX("Expiry Date") AS last_certification,
         COUNT(*) AS certification_count,
         AVG(
             CASE 
-                WHEN “Certification Grade” = 'AA' THEN 5
-                WHEN “Certification Grade” = 'A' THEN 4
-                WHEN “Certification Grade” = 'B' THEN 3
-                WHEN “Certification Grade” = 'C' THEN 2
+                WHEN "Certification Grade" = 'AA' THEN 5
+                WHEN "Certification Grade" = 'A' THEN 4
+                WHEN "Certification Grade" = 'B' THEN 3
+                WHEN "Certification Grade" = 'C' THEN 2
                 ELSE 1
             END
         ) AS avg_certification_quality
     FROM certifications
-    WHERE “Company Name” NOT IN (
-        SELECT “Company Name” FROM certifications WHERE “Certification Body” = 'Isoqar'
+    WHERE "Company Name" NOT IN (
+        SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
     ) 
-    GROUP BY “Company Name”
+    GROUP BY "Company Name"
 )
 SELECT 
-    “Company Name”,
+    "Company Name",
     last_certification,
     certification_count,
     avg_certification_quality,
@@ -163,16 +139,201 @@ SELECT
         WHEN last_certification > CURRENT_DATE - INTERVAL '1 year' AND avg_certification_quality >= 4 THEN 'High Probability'
         WHEN last_certification BETWEEN CURRENT_DATE - INTERVAL '3 years' AND CURRENT_DATE - INTERVAL '1 year' THEN 'Medium Probability'
         ELSE 'Low Probability'
-    END AS “Likelihood to Certify with Isoqar”
+    END AS "Likelihood to Certify with Isoqar"
 FROM Potential_Clients;
-📌 What will it show?
-✅ High Probability - companies that are most likely to certify with Isoqar.
-Medium Probability - companies that have been certified but have lost their certificate.
-Low Probability - companies that have hardly been certified.
+📌 Insight:
+✅ High Probability – Companies most likely to certify with Isoqar.
+✅ Medium Probability – Companies that were certified but lost certification.
+✅ Low Probability – Companies with minimal certification history.
 
-📌 5. Parsing BRC certificates (future feature)
-📌 What is provided?
-✅ Automatic parsing of data from the BRC website.
-✅ Automatic uploading to SQL.
-Auto-updating of dashboards in Tableau / Power BI.
+📌 5. Automation (Future Feature)
+📌 What is planned?
+✅ Automated scraping of certification data from the BRC website.
+✅ Automated loading into SQL.
+✅ Auto-refreshing dashboards in Tableau / Power BI.
+
+python
+Копировать
+Редактировать
+# BRC Certification Scraper (Future Implementation)
+import requests
+from bs4 import BeautifulSoup
+import pandas as pd
+
+BRC_URL = "https://directory.brcgs.com/certified-companies"
+response = requests.get(BRC_URL, headers={"User-Agent": "Mozilla/5.0"})
+soup = BeautifulSoup(response.text, "html.parser")
+📌 6. Conclusion
+✅ The project is fully adapted for BRC + ISO 27001 compliance.
+✅ Risk analysis of certification losses is included.
+✅ A checklist enables tracking task completion.
+
+🚀 Next Step: Begin SQL implementation + data analysis? 😊
+
+Копировать
+Редактировать
+
+
+
+
+
+Вы сказали:
+повнісню весь текст рідмі напиши у форматі розмітки маркдаун
+ChatGPT сказал:
+markdown
+Копировать
+Редактировать
+# 📌 README.md – Analytical Project "BRC Certification for Isoqar"
+
+## 🚀 Project Overview
+This project analyzes **BRC certification** for **the certification body Isoqar**.  
+**Objectives:**  
+✅ **Increase Isoqar's market share in BRC certification.**  
+✅ **Assess potential revenue from acquiring new clients (Revenue Opportunity).**  
+✅ **Identify companies that will soon lose certification and could transition to Isoqar.**  
+✅ **Analyze compliance of certifications with ISO 27001 (information security).**  
+✅ **Automate data updates in SQL and dashboards (future feature).**  
+
+---
+
+## 📌 1. Business Questions
+🔹 **What is Isoqar's market share compared to competitors?**  
+🔹 **Which companies have not yet certified with Isoqar but could do so?**  
+🔹 **What is the potential revenue if Isoqar attracts more clients?**  
+🔹 **Which companies are at risk of losing certification soon?**  
+🔹 **How does the certification Grade impact the likelihood of recertification?**  
+🔹 **Which companies have high-risk levels due to certification issues (ISO 27001 Risk Management)?**  
+🔹 **How can we automate the data update process for more accurate analysis?**  
+
+---
+
+## 📌 2. Project Execution Plan
+
+### ✅ **Checklist for Task Completion**
+| ✅ Completed | Task | Notes |
+|------------|----------------------|---------------------|
+| ⬜ | **Stage 1: Data Extraction & Preparation** | |
+| ✅ | Load Excel files (`Food` + `Packaging`) | |
+| ✅ | Clean duplicates, missing values, and format dates | |
+| ✅ | Split into `companies`, `contacts`, `certifications` tables | |
+| ⬜ | **Stage 2: Load Data into SQL** | |
+| ⬜ | Create a relational PostgreSQL database | |
+| ⬜ | Load cleaned data into SQL | |
+| ⬜ | **Stage 3: Analytics (SQL Queries)** | |
+| ⬜ | Analyze the certification market (Isoqar's market share) | |
+| ⬜ | Identify companies not certified by Isoqar | |
+| ⬜ | Calculate Revenue Opportunity | |
+| ⬜ | Assess risks according to ISO 27001 | |
+| ⬜ | **Stage 4: Visualization in Tableau / Power BI** | |
+| ⬜ | "Revenue Opportunity" Dashboard | |
+| ⬜ | "Competitive Analysis of Certifications" Dashboard | |
+| ⬜ | "RFM Analysis of Potential Clients" Dashboard | |
+| ⬜ | **Stage 5: Automation (Future Feature)** | |
+| ⬜ | Automated scraping of BRC certifications | |
+| ⬜ | Load updated data into SQL | |
+| ⬜ | Auto-refresh analytics in Tableau / Power BI | |
+
+---
+
+## 📌 3. Database Structure (SQL)
+
+```sql
+-- Companies table
+CREATE TABLE companies (
+    company_id SERIAL PRIMARY KEY,
+    company_name TEXT UNIQUE,
+    site_code TEXT,
+    address TEXT
+);
+
+-- Contacts table
+CREATE TABLE contacts (
+    contact_id SERIAL PRIMARY KEY,
+    company_id INT REFERENCES companies(company_id),
+    contact_type TEXT, -- 'Technical' or 'Commercial'
+    contact_name TEXT,
+    email TEXT
+);
+
+-- Certifications table
+CREATE TABLE certifications (
+    cert_id SERIAL PRIMARY KEY,
+    company_id INT REFERENCES companies(company_id),
+    certification_body TEXT,
+    issue_date DATE,
+    expiry_date DATE,
+    certification_grade TEXT
+);
+📌 4. Key SQL Queries
+📊 1. What is Isoqar's market share?
+sql
+Копировать
+Редактировать
+SELECT 
+    "Certification Body",
+    COUNT(*) AS "Total Certifications",
+    ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER(), 2) AS "Market Share (%)"
+FROM certifications
+GROUP BY "Certification Body"
+ORDER BY "Total Certifications" DESC;
+📌 Insight: How dominant Isoqar is in the certification market compared to competitors.
+
+📊 2. Potential clients for Isoqar
+sql
+Копировать
+Редактировать
+SELECT 
+    "Company Name",
+    "Certification Body"
+FROM certifications
+WHERE "Company Name" NOT IN (
+    SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
+);
+📌 Insight: Companies that have not yet certified with Isoqar but could do so.
+
+📊 3. RFM Analysis for Potential Clients
+sql
+Копировать
+Редактировать
+WITH Potential_Clients AS (
+    SELECT 
+        "Company Name",
+        MAX("Expiry Date") AS last_certification,
+        COUNT(*) AS certification_count,
+        AVG(
+            CASE 
+                WHEN "Certification Grade" = 'AA' THEN 5
+                WHEN "Certification Grade" = 'A' THEN 4
+                WHEN "Certification Grade" = 'B' THEN 3
+                WHEN "Certification Grade" = 'C' THEN 2
+                ELSE 1
+            END
+        ) AS avg_certification_quality
+    FROM certifications
+    WHERE "Company Name" NOT IN (
+        SELECT "Company Name" FROM certifications WHERE "Certification Body" = 'Isoqar'
+    ) 
+    GROUP BY "Company Name"
+)
+SELECT 
+    "Company Name",
+    last_certification,
+    certification_count,
+    avg_certification_quality,
+    CASE 
+        WHEN last_certification > CURRENT_DATE - INTERVAL '1 year' AND avg_certification_quality >= 4 THEN 'High Probability'
+        WHEN last_certification BETWEEN CURRENT_DATE - INTERVAL '3 years' AND CURRENT_DATE - INTERVAL '1 year' THEN 'Medium Probability'
+        ELSE 'Low Probability'
+    END AS "Likelihood to Certify with Isoqar"
+FROM Potential_Clients;
+📌 Insight:
+✅ High Probability – Companies most likely to certify with Isoqar.
+✅ Medium Probability – Companies that were certified but lost certification.
+✅ Low Probability – Companies with minimal certification history.
+
+📌 5. Automation (Future Feature)
+📌 What is planned?
+✅ Automated scraping of certification data from the BRC website.
+✅ Automated loading into SQL.
+✅ Auto-refreshing dashboards in Tableau / Power BI.
 
